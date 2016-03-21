@@ -1,3 +1,6 @@
+require 'itamae/secrets'
+node[:secrets] = Itamae::Secrets(File.join(__dir__, '../../secret'))
+
 package 'git'
 package 'nodejs'
 package 'htop'
@@ -39,3 +42,9 @@ remote_file '/etc/sudoers' do
   group 'root'
 end
 
+template '/home/mirakui/compote/.env' do
+  mode '644'
+  owner 'mirakui'
+  group 'mirakui'
+  only_if 'test -d /home/mirakui/compote'
+end
