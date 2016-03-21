@@ -13,6 +13,11 @@ remote_file '/etc/mysql/my.cnf' do
   group 'root'
 end
 
+execute 'mysql_install_db' do
+  command ' mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql'
+  not_if 'test -d /var/lib/mysql/mysql'
+end
+
 user 'mirakui' do
   create_home true
 end
@@ -48,3 +53,4 @@ template '/home/mirakui/compote/.env' do
   group 'mirakui'
   only_if 'test -d /home/mirakui/compote'
 end
+
