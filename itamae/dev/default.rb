@@ -5,6 +5,7 @@ package 'git'
 package 'nodejs'
 package 'htop'
 package 'dstat'
+package 'tmux'
 
 package 'mariadb'
 remote_file '/etc/mysql/my.cnf' do
@@ -36,6 +37,12 @@ file '/home/mirakui/.ssh/authorized_keys' do
 end
 
 remote_file '/home/mirakui/.bashrc' do
+  mode '644'
+  owner 'mirakui'
+  group 'mirakui'
+end
+
+remote_file '/home/mirakui/.tmux.conf' do
   mode '644'
   owner 'mirakui'
   group 'mirakui'
